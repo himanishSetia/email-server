@@ -1,0 +1,17 @@
+{
+  "name": "emailserver",
+  "version": "1.0.0",
+  "description": "Email server to send emails",
+  "main": "server.js",
+  "scripts": {
+    "test": "server.js",
+    "start": "node server.js"
+  },
+  "author": "Himanish Setia",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "nodemailer": "^4.6.8"
+  }
+}
