@@ -36,6 +36,36 @@ router.get('/sendMail',function(req,res){
       });
 })
 
+router.get('/reduce',function(req,res){
+  var arr = []
+
+  if(req.query.map != '' && req.query.map != undefined && req.query.map != null){
+  var sampleData = req.query.map.split(" ");
+
+  var temp = []
+  
+
+  sampleData.forEach(function(obj){
+    if(temp.indexOf(obj.toUpperCase()) == -1){
+      temp.push(obj.toUpperCase());
+      arr.push({name:obj,weight:0});
+    }
+  })
+  sampleData.forEach(function(obj){
+    arr.forEach(function(redObj){
+      if(obj.toUpperCase() == redObj.name.toUpperCase()){
+        redObj.weight = redObj.weight + 1;
+      }
+    })
+  })
+  res.json({"data":arr,"status":"success","message":"Success"});  
+  }else{
+    res.json({"data":arr,"status":"faliure","success":"Map cannot be blank"});  
+  }
+  
+
+});
+
 app.use('/api',router);
 
 app.listen(port);
