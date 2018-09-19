@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var cors = require('cors');
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
@@ -12,6 +13,10 @@ var transporter = nodemailer.createTransport({
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(cors({
+  origin: 'http://localhost:4200'
+}));
+
 
 var port = process.env.PORT || 3000;
 
@@ -48,12 +53,12 @@ router.get('/reduce',function(req,res){
   sampleData.forEach(function(obj){
     if(temp.indexOf(obj.toUpperCase()) == -1){
       temp.push(obj.toUpperCase());
-      arr.push({name:obj,weight:0});
+      arr.push({text:obj,weight:0});
     }
   })
   sampleData.forEach(function(obj){
     arr.forEach(function(redObj){
-      if(obj.toUpperCase() == redObj.name.toUpperCase()){
+      if(obj.toUpperCase() == redObj.text.toUpperCase()){
         redObj.weight = redObj.weight + 1;
       }
     })
