@@ -14,7 +14,7 @@ var transporter = nodemailer.createTransport({
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'http://localhost:4200'
+  origin: '*'
 }));
 
 
